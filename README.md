@@ -46,5 +46,7 @@ ecodist
 Some packages will need to installed using the following:
 BiocManager::install("package")
 
-
+To install selbal use this code:
+library(devtools) 
+install_github(repo = "UVic-omics/selbal")
 

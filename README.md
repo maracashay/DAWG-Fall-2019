@@ -48,5 +48,6 @@ BiocManager::install("package")
 
 To install selbal use this code:
 library(devtools) 
+
 install_github(repo = "UVic-omics/selbal")
 

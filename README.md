@@ -42,6 +42,7 @@ tibble
 Hmisc
 devtools
 ecodist
+RVAideMemoire
 
 Some packages will need to installed using the following:
 BiocManager::install("package")

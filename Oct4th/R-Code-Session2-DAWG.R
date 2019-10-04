@@ -144,12 +144,20 @@ plot_heatmap(ps.genera, "PCoA", "bray", "Gender")
 ps.gen.filtered <- filter_taxa(ps.genera, function(x) sum(x > 1) > (0.50*length(x)), TRUE)
 # the above command will keep genera that have more than 1 sequence count in at least 50% of the samples
 plot_heatmap(ps.gen.filtered, "PCoA", "bray", "Gender")
-
-
-
 plot_heatmap(ps.gen.filtered, "PCoA", "bray", "month")
-
+                              
+# subset a specific group of taxa and plot via heatmap
+strep = subset_taxa(ps.1, Genus == "g__Streptococcus")
+lacto = subset_taxa(ps.1, Genus == "g__Lactobacillus")
+                               
+plot_heatmap(strep, "PCoA", "bray", "Gender")
+plot_heatmap(lacto, "PCoA", "bray", "month")   
+                               
+strep.lacto = subset_taxa(ps.1, Genus == "g__Lactobacillus" | Genus == "g__Streptococcus")
+plot_heatmap(strep.lacto, "PCoA", "bray", "month")   
+                      
 #### Beta diversity ####
+# comparing community composition between samples #
 # Bray curtis # 
 bc.dist <- phyloseq::distance(otu_table(ps.1), "bray")
 adonis(bc.dist ~ ARDS + Gender + inhosp + Location, data = metadata)
@@ -166,6 +174,14 @@ ps.1@sam_data$inhosp <- as.factor(ps.1@sam_data$inhosp)
 
 plot_ordination(ps.1, rt.pcoa, "samples", color = "inhosp", shape = "ARDS") + geom_point(size = 7)
 
+# comparing homogeneity of variances between groups 
+# compariong variability of samples from group A to variability of samples from group B
+bc.dist <- vegdist(otu.table, "bray")
+beta.disp <- betadisper(bc.dist, metadata$Gender) # calculates dispersions
+boxplot(beta.disp)
+anova(beta.disp) # performs statistical test
+# if p <0.05 then run the below command
+permutest(beta.disp, pairwise=TRUE)
 
 # Identify important variables for explaining Biological variation ####
 meta.df <- data.frame(sample_data(ps.1))

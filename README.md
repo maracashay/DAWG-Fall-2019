@@ -1,13 +1,15 @@
 # DAWG-Fall-2019
 
 DAWG will be working with a 16S rRNA amplicon dataset provided by Dr. Judie Howrylak, a pulmonologist with Penn State Hershey. 
-In total there are ~ 207 samples taken from 84 patients presenting with the same illness when entering the hospital. 
+In total there are ~ 207 samples taken from 84 patients presenting with the same illness when entering the hospital. Sequencing was performed with the 515/806 primer set. 
 
 60 patients had 2 samples taken from them, stool and trachael at day 1
 3 Patient had one sample taken from them, either stool or trachael at day 1
 
 18 patients had 4 samples taken from them, stool and trachael at day 1 and again at day 5
 4 patients had 3 samples taken from them, stool and trachael at day 1 and either stool or trachael at day 5
+
+The goal of this project is to determine if there are biomarkers that can be used to predict patient outcome (survival or mortality) once they are admitted to see the researcher. It  is unclear which set of samples, stool or tracheal, that will provide us with better predictions but Dr. Howrylak hypothesizes that the tracheal swabs will be better predictors. 
 
 Metadata for this dataset includes:
 gender: male = 1, female = 0
